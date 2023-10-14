@@ -15,7 +15,7 @@ X = "x"
 Y = "y"
 
 # Substation parameters
-SUBSTA_TYPES = "substation_types"
+SUBSTATION_TYPES = "substation_types"
 ID = "id"
 COST = "cost"
 RATING = "rating"
@@ -41,11 +41,13 @@ SUB_SUB_CABLE_TYPES = "substation_substation_cable_types"
 # RATING  = "rating"
 
 # Subtation location parameters
+SUBSTATION_LOCATION = "substation_locations"
 # ID = "id"
 # X = "x"
 # Y = "y"
 
 # wind turbines parameters
+WIND_TURBINES = "wind_turbines"
 # ID = "id"
 # X = "x"
 # Y = "y"
@@ -73,6 +75,17 @@ SUBSTATION_ID = "substation_id"
 
 
 # Keys needed in solutions
-KEYS_EXPECTED = []
+KEYS_EXPECTED = [TURBINES, SUBSTATIONS]
+# Keys needed in the substation dics
+KEYS_EXPECTED_SUBSTATION = [
+    ID,
+    SUB_TYPE,
+    LAND_CABLE_TYPE,
+    LINKED_TO_ANOTHER,
+    LINKED_SUB_ID,
+    LINKED_CABLE_TYPE,
+]
+# Keys needed in the turbine dics
+KEYS_EXPECTED_TURBINES = [ID, SUBSTATION_ID]
 # Maximum size of values in solution
 MATCHING = {}

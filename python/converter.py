@@ -3,8 +3,8 @@ from constants import *
 
 
 def list_to_dic(lis, key_of_list, str_list):
-    """Converts a list of dictionnaries e containing an "id" key
-    to a dictionnary where the keys are the values of "id" for each e in the list
+    """Converts a list of dictionnaries dic containing an "id" key
+    to a dictionnary where the keys are the values of "id" for each dic in the list
     key_of_list is passed as argument have a coherent error message in case of a problem
     """
     return_dic = {}
@@ -64,6 +64,7 @@ if __name__ == "__main__":
     name, ext = os.path.splitext(file_in)
     file_in_conv = name + "_conv" + ext
     out_conv = converter(loader.load_json(file_out))
+    print(out_conv)
     in_conv = converter(loader.load_json(file_in))
     loader.save_json(out_conv, file_out_conv)
     loader.save_json(in_conv, file_in_conv)
