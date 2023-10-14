@@ -1,7 +1,6 @@
 from errors import InstanceError
 from constants import *
 
-
 def list_to_dic(lis, key_of_list, str_list):
     """Converts a list of dictionnaries dic containing an "id" key
     to a dictionnary where the keys are the values of "id" for each dic in the list
@@ -30,41 +29,6 @@ def list_to_dic(lis, key_of_list, str_list):
     return return_dic
 
 
-def converter(dic):
-    """Converts every list in the input / ouptut dictionnaries into a dictionnary,
-    with the keys being the ids (We have list[i]["id"] = i+1 in 2023's instances),
-    so that we don't have to take into account the fact that the ids begin at 1
-    and list indices at 0.
-    This year, the lists are always at depth 1 in the dictionnaries (e.g. outdata["turbines"], indata["substation_types"], etc)
-    """
-    str_errors = []  # List of errors
-    converted = {}  # New dictionnary
-    for key in dic.keys():
-        data = dic[key]
-        dic_from_list = {}
-        if type(data) == list:
-            converted[key] = list_to_dic(data, key, str_errors)
-        else:
-            converted[key] = data
-    if str_errors:
-        raise InstanceError(str_errors)
-    return converted
+def convert_instance(raw_instance):
+    
 
-
-if __name__ == "__main__":
-    import os
-    import loader
-
-    size = "tiny"
-    curr_path = os.path.dirname(__file__)
-    file_in = curr_path + f"/../instances/input/{size}.json"
-    file_out = curr_path + f"/../instances/output/{size}_sol.json"
-    name, ext = os.path.splitext(file_out)
-    file_out_conv = name + "_conv" + ext
-    name, ext = os.path.splitext(file_in)
-    file_in_conv = name + "_conv" + ext
-    out_conv = converter(loader.load_json(file_out))
-    print(out_conv)
-    in_conv = converter(loader.load_json(file_in))
-    loader.save_json(out_conv, file_out_conv)
-    loader.save_json(in_conv, file_in_conv)

@@ -1,6 +1,5 @@
 from constants import *
 from errors import InstanceError
-from converter import instance_converter
 
 
 def solution_checker(instance, solution):
@@ -115,14 +114,14 @@ def check_substations_content(solution, instance):
         SUB_TYPE: SUBSTATION_TYPES,
         LAND_CABLE_TYPE: LAND_SUB_CABLE_TYPES,
     }
-    for i, substation in substations_list:
+    for i, substation in enumerate(substations_list):
         # First check the contents where the constraint is being an integer && 1 <= some_id <= max_id
         for key, instance_key in MATCHING.items():
             max_value = len(instance[instance_key])
             id = substation[key]
             if not (type(id)) == int:
                 str_errors.append(f"The {key} of substation {i+1} must be an integer")
-            if not (1 <= id <= max_value):
+            elif not (1 <= id <= max_value):
                 str_errors.append(
                     f"The {key} of substation {i+1} is not valid, it does not exist in the list of {instance_key}"
                 )
@@ -138,7 +137,7 @@ def check_substations_content(solution, instance):
             str_errors.append(
                 f"The id for the linked substation of substation {i+1} must be an integer"
             )
-        if not (linked_sub == None or linked_sub in built_substation_ids):
+        elif not (linked_sub == None or linked_sub in built_substation_ids):
             str_errors.append(
                 f"The substation {i+1} is linked to a substation that doesn't exist"
             )
@@ -148,7 +147,7 @@ def check_substations_content(solution, instance):
             str_errors.append(
                 f"The linked_cable_type for substation {i+1} must be an integer"
             )
-        if not (linked_cable == None or 1 <= linked_cable <= max_id_sub_cable):
+        elif not (linked_cable == None or 1 <= linked_cable <= max_id_sub_cable):
             str_errors.append(
                 f"The link cable type of substation {i + 1} is not valid - it doesn't exist in the list of substation-substation cable types"
             )
