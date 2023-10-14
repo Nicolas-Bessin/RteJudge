@@ -1,11 +1,4 @@
-from constants import *
 import json
-import os
-
-size = "tiny"
-curr_path = os.path.dirname(__file__)
-file_in = curr_path + f"/../instances/input/{size}.json"
-file_out = curr_path + f"/../instances/output/{size}_sol.json"
 
 
 def remove_space_from_keys(dic):
@@ -38,7 +31,3 @@ def clean(filename):
         json.dump(clean_data, f, indent=4)
 
     return None
-
-
-clean(file_in)
-clean(file_out)
