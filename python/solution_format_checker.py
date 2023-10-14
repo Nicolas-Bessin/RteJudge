@@ -13,6 +13,8 @@ def solution_checker(instance, solution):
     check_format(solution)
     check_list_substations(solution)
     check_list_turbines(solution)
+    check_substations_content(solution, instance)
+    check_turbines_content(solution, instance)
 
 
 def check_format(solution):
