@@ -14,7 +14,7 @@ def cost(instance, solution):
 
 def construction_cost(instance, solution):
     """
-    Function calculating the building cost of a given solution to an instance
+    Function calculating the construction cost of a given solution to an instance
     :param instance: the instance addressed by the solution
     :param solution: the solution given by the candidates
     :return: int score: the cost associated with the solution
@@ -72,12 +72,13 @@ def no_failure_cost(instance, solution, power):
     :param instance: the instance addressed by the solution
     :param solution: the solution given by the canditate
     :param power: the power generation in the wind scenario under which we compute this cost
-    :return: score: the cost associated with the solution under this scenario"""
+    :return: score: the cost associated with the solution under this scenario
+    """
     cost = 0
     for id, substation in solution[SUBSTATIONS].items():
         # We first compute how many turbines are linked to this substation
         linked_turbines = [
-            tu_id for tu_id, tu in solution[TURBINES].items() if tu[SUBSTATION_ID] == id
+            1 for tu in solution[TURBINES].values() if tu[SUBSTATION_ID] == id
         ]
         missing_capacity = power * len(linked_turbines)
         sub_type = substation[SUB_TYPE]
@@ -87,4 +88,97 @@ def no_failure_cost(instance, solution, power):
             instance[LAND_SUB_CABLE_TYPES][cable_type][RATING],
         )
         cost += max(missing_capacity, 0)
+    return cost
+
+
+def curtailing_failed_substation(instance, sub_id, substation, turbines, power):
+    """Computes the curtailing of a given failed substation
+    (First part of the (6) equation)
+    :param instance: the instance addressed by the solution
+    :param sub_id: the id of the current substation, used to compute how many turbines are attached
+    :param substation: the dictionnary for the failed substation
+    :param turbines: the dictionnary of the turbines
+    :param power: the power generated under the current scenario
+    returns the curtailing of failed substation"""
+    curtailing = 0
+    # First add the received power
+    nb_turbines = len([1 for tu in turbines.values() if tu[SUBSTATION_ID] == sub_id])
+    curtailing += power * nb_turbines
+    # Then substract the power that is sent to another substation if applicable
+    if substation[LINKED_TO_ANOTHER]:
+        cable_type = substation[LINKED_CABLE_TYPE]
+        curtailing -= instance[SUB_SUB_CABLE_TYPES][cable_type][RATING]
+    return max(0, curtailing)
+
+
+def curtailing_non_failed_substation(
+    instance, sub_id, substation, turbines, power, power_from_failed=0
+):
+    """Computes the curtailing of a given substation
+    (First part of the (6) equation)
+    :param instance: the instance addressed by the solution
+    :param sub_id: the id of the current substation, used to compute how many turbines are attached
+    :param substation: the dictionnary for the failed substation
+    :param turbines: the dictionnary of the turbines
+    :param power: the power generated under the current scenario
+    :param power_from_failed: The power received from the failed substation (0 by default)
+    :return: the curtailing of the substation"""
+    curtailing = 0
+    # First add the power from the turbines
+    nb_turbines = len([1 for tu in turbines.values() if tu[SUBSTATION_ID] == sub_id])
+    curtailing += power * nb_turbines
+    # Then the power received from failed substation
+    curtailing += power_from_failed
+    # Then substract the capacity of this substation
+    sub_type, cable_type = substation[SUB_TYPE], substation[LAND_CABLE_TYPE]
+    sub_capacity = instance[SUBSTATION_TYPES][sub_type][RATING]
+    cable_capacity = instance[LAND_SUB_CABLE_TYPES][cable_type][RATING]
+
+    capacity = min(sub_capacity, cable_capacity)
+    curtailing -= capacity
+
+    return max(0, curtailing)
+
+
+def failure_cost(instance, solution, power, fail_id):
+    """Computes the failure cost given the instance, a solution, the generated power and the id of the failed substation
+    (C^n(x, y, omega) in the mathematical notations)
+    :param instance: the instance addressed by the solution
+    :param solution: the solution given by the canditate
+    :param power: the power generation in the wind scenario under which we compute this cost
+    :param fail_id: id of the failed substation
+    :return: score: the cost associated with the solution under this scenario
+    """
+    cost = 0
+    substations = solution[SUBSTATIONS]
+    turbines = solution[TURBINES]
+    # Linked station, might be None
+    linked_id = substations[fail_id][LINKED_SUB_ID]
+    # Power sent
+    power_sent = 0
+    if linked_id != None:
+        nb_turbines = len(
+            [1 for tu in turbines.values() if tu[SUBSTATION_ID] == fail_id]
+        )
+        cable_capa = instance[SUB_SUB_CABLE_TYPES][
+            substations[fail_id][LINKED_CABLE_TYPE]
+        ][RATING]
+        power_sent = min(power * nb_turbines, cable_capa)
+    # First add the cost of the curtailing of the failed substation
+    cost += curtailing_failed_substation(
+        instance, fail_id, substations[fail_id], turbines, power
+    )
+    # Then iterate through the rest of the substations
+    for id, sub in substations.items():
+        # We already took this cost into account
+        if id == fail_id:
+            continue
+        # If this substation is receiving from the failed, compute the power received
+        elif id == linked_id:
+            cost += curtailing_non_failed_substation(
+                instance, id, sub, turbines, power, power_sent
+            )
+        else:
+            cost += curtailing_non_failed_substation(instance, id, sub, turbines, power)
+
     return cost
