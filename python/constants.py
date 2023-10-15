@@ -53,7 +53,7 @@ WIND_TURBINES = "wind_turbines"
 # Y = "y"
 
 # Scenarios parameters
-WIND_SCENARIO = "wind_scenario"
+WIND_SCENARIO = "wind_scenarios"
 # ID = "id"
 PROBABILITY = "probability"
 POWER_GENERATION = "power_generation"

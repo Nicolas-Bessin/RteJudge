@@ -58,9 +58,11 @@ def check_list_substations(solution):
             missing_keys = set(KEYS_EXPECTED_SUBSTATION) - set(sub_dict.keys())
             extra_keys = set(sub_dict.keys()) - set(KEYS_EXPECTED_SUBSTATION)
             for key in missing_keys:
-                str_errors.append(f"Key {key} is missing from the dictionnary {i+1}")
+                str_errors.append(f"Key '{key}' is missing from the substation {i+1}")
             for key in extra_keys:
-                str_errors.append(f"Key {key} is not expected in the dictionnary {i+1}")
+                str_errors.append(
+                    f"Key '{key}' is not expected in the substationn {i+1}"
+                )
     if str_errors:
         raise InstanceError(str_errors)
 
