@@ -1,5 +1,6 @@
 from constants import *
 from math import dist
+from errors import InstanceError
 
 
 def cost(instance, solution):
@@ -9,7 +10,9 @@ def cost(instance, solution):
     :param solution: the solution given by the candidates
     :return: int score: the cost associated with the solution
     """
-    return cost
+    const_cost = construction_cost(instance, solution)
+    oper_cost = operational_cost(instance, solution)
+    return const_cost + oper_cost
 
 
 def construction_cost(instance, solution):
@@ -66,29 +69,28 @@ def construction_cost(instance, solution):
     return cost
 
 
-def no_failure_cost(instance, solution, power):
-    """Computes the no-failure cost given the instance, a solution and the power in this scenario
+def no_failure_curtailing(instance, solution, power):
+    """Computes the no-failure curtailing given the instance, a solution and the power in this scenario
     (C^n(x, y, omega) in the mathematical notations)
     :param instance: the instance addressed by the solution
     :param solution: the solution given by the canditate
     :param power: the power generation in the wind scenario under which we compute this cost
-    :return: score: the cost associated with the solution under this scenario
+    :return: score: the curtailing associated with the solution under this scenario
     """
-    cost = 0
+    curtailing = 0
     for id, substation in solution[SUBSTATIONS].items():
         # We first compute how many turbines are linked to this substation
         linked_turbines = [
             1 for tu in solution[TURBINES].values() if tu[SUBSTATION_ID] == id
         ]
-        missing_capacity = power * len(linked_turbines)
+        curtailing += power * len(linked_turbines)
         sub_type = substation[SUB_TYPE]
         cable_type = substation[LAND_CABLE_TYPE]
-        missing_capacity -= min(
+        curtailing -= min(
             instance[SUBSTATION_TYPES][sub_type][RATING],
             instance[LAND_SUB_CABLE_TYPES][cable_type][RATING],
         )
-        cost += max(missing_capacity, 0)
-    return cost
+    return max(0, curtailing)
 
 
 def curtailing_failed_substation(instance, sub_id, substation, turbines, power):
@@ -140,14 +142,14 @@ def curtailing_non_failed_substation(
     return max(0, curtailing)
 
 
-def failure_cost(instance, solution, power, fail_id):
-    """Computes the failure cost given the instance, a solution, the generated power and the id of the failed substation
+def curtailing_given_failed_sub(instance, solution, power, fail_id):
+    """Computes the total curtailing given the instance, a solution, the generated power and the id of the failed substation
     (C^n(x, y, omega) in the mathematical notations)
     :param instance: the instance addressed by the solution
     :param solution: the solution given by the canditate
     :param power: the power generation in the wind scenario under which we compute this cost
     :param fail_id: id of the failed substation
-    :return: score: the cost associated with the solution under this scenario
+    :return: score: the curtailing associated with the solution under this scenario
     """
     cost = 0
     substations = solution[SUBSTATIONS]
@@ -181,4 +183,67 @@ def failure_cost(instance, solution, power, fail_id):
         else:
             cost += curtailing_non_failed_substation(instance, id, sub, turbines, power)
 
+    return cost
+
+
+def cost_of_curtailing(instance, curtailing):
+    """Computes the cost of the given curtailing
+    using the formula c^c(C) = c⁰C + c^p[C-C_max]⁺
+    :param instance: the instance addressed by the solution
+    :param curtailing: the curtailing we want to know the cost of
+    :return: cost: the cost of the curtailing
+    """
+    linear_cost = instance[GEN_PARAMETERS][CURTAILING_COST]
+    pena_cost = instance[GEN_PARAMETERS][CURTAILING_PENA]
+    max_curtailing = instance[GEN_PARAMETERS][MAX_CURTAILING]
+    cost = linear_cost * curtailing
+    cost += pena_cost * max(0, curtailing - max_curtailing)
+    return cost
+
+
+def prob_failure(instance, substation):
+    """Computes the probability of failure for a given substation
+    :param instance: the instance addressed by the solution
+    :param substation: the dictionnary of the substation we compute p^f for
+    :return: prob: the probability of failure of this substation"""
+    prob = 0
+    sub_type = substation[SUB_TYPE]
+    cab_type = substation[LAND_CABLE_TYPE]
+    prob += instance[SUBSTATION_TYPES][sub_type][PROB_FAIL]
+    prob += instance[LAND_SUB_CABLE_TYPES][cab_type][PROB_FAIL]
+    return prob
+
+
+def operational_cost(instance, solution):
+    """Computes the operationnal cost of a given solution, defined in (7)
+    :param instance: the instance addressed by the solution
+    :param solution: the solution given by the candidate
+    :return: the operational cost of the solution"""
+    cost = 0
+    # We will keep the failure probas in memory for
+    failure_probas = {}
+    substations = solution[SUBSTATIONS]
+    for id, sub in substations.items():
+        failure_probas[id] = prob_failure(instance, sub)
+    no_fail_proba = 1 - sum(failure_probas.values())
+    if not (0 <= no_fail_proba <= 1):
+        raise InstanceError(["The probability of a non-failure should be in [0,1]"])
+    # We then enumerate through the scenarios
+    scenarios = instance[WIND_SCENARIOS]
+    for scenario in scenarios.values():
+        scenario_cost = 0
+        scenario_power = scenario[POWER_GENERATION]
+        scenario_prob = scenario[PROBABILITY]
+        for id in substations.keys():
+            fail_curt = curtailing_given_failed_sub(
+                instance, solution, scenario_power, id
+            )
+            scenario_cost += failure_probas[id] * cost_of_curtailing(
+                instance, fail_curt
+            )
+        no_fail_curtailing = no_failure_curtailing(instance, solution, scenario_power)
+        scenario_cost += no_fail_proba * cost_of_curtailing(
+            instance, no_fail_curtailing
+        )
+        cost += scenario_prob * scenario_cost
     return cost

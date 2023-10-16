@@ -47,7 +47,7 @@ def convert_instance(raw_instance):
         SUB_SUB_CABLE_TYPES,
         SUBSTATION_LOCATION,
         WIND_TURBINES,
-        WIND_SCENARIO,
+        WIND_SCENARIOS,
     ]
     for key in keys_with_list:
         return_dic[key] = list_to_dic(raw_instance[key], key, str_errors)

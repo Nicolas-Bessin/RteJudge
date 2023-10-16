@@ -2,7 +2,7 @@ from loader import load_json, save_json
 from remove_spaces import clean_keys
 from solution_format_checker import solution_checker
 from converter import convert_instance, convert_solution
-from cost import no_failure_cost
+from cost import cost
 
 size = "tiny"
 
@@ -19,4 +19,4 @@ if __name__ == "__main__":
     solution_checker(raw_instance, raw_solution)
     solution = convert_solution(raw_solution)
     instance = convert_instance(raw_instance)
-    no_failure_cost(instance, solution, 1)
+    print(cost(instance, solution))

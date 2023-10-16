@@ -8,7 +8,7 @@ CURTAILING_PENA = "curtailing_penalty"
 MAX_CURTAILING = "maximum_curtailing"
 FIX_COST_CABLE = "fixed_cost_cable"  # Cost of the turbine - substation cables
 VAR_COST_CABLE = "variable_cost_cable"  # Cost of turbine - substation cables
-MAIN_LAND_STATION = "main_land_sation"
+MAIN_LAND_STATION = "main_land_station"
 
 # Position parameters
 X = "x"
@@ -53,7 +53,7 @@ WIND_TURBINES = "wind_turbines"
 # Y = "y"
 
 # Scenarios parameters
-WIND_SCENARIO = "wind_scenarios"
+WIND_SCENARIOS = "wind_scenarios"
 # ID = "id"
 PROBABILITY = "probability"
 POWER_GENERATION = "power_generation"
