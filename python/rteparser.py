@@ -1,5 +1,5 @@
 from json import decoder
-from converter import instance_converter, solution_converter
+from converter import convert_instance, convert_solution
 from loader import load_json
 from solution_format_checker import solution_checker
 from constraints import check_constraints
@@ -18,15 +18,15 @@ def parser(instance_path, solution_path):
 
     try:
         # We import both files in variables
-        instance = load_json(instance_path)
-        solution = load_json(solution_path)
+        raw_instance = load_json(instance_path)
+        raw_solution = load_json(solution_path)
 
         # We check the validity of the solution's format
-        solution_checker(instance, solution)
+        solution_checker(raw_instance, raw_solution)
 
         # we convert the instance and the solution in order to manipulate them more easily
-        converted_instance = instance_converter(instance)
-        converted_solution = solution_converter(solution)
+        converted_instance = convert_instance(raw_instance)
+        converted_solution = convert_solution(raw_solution)
 
         # We check whether the solution verifies all constraints
         check_constraints(converted_solution, converted_instance)
@@ -51,7 +51,7 @@ def parser(instance_path, solution_path):
 if __name__ == "__main__":
     # The ArgumentParser method allows to create an object that will parse what is typed in the command line
     python_parser = argparse.ArgumentParser(
-        description="Check if a solution is a valid solution of the Pelic "
+        description="Check if a solution is a valid solution of the Rte "
         "KIRO Problem and give it a score."
     )
     python_parser.add_argument("-i", "--instance", dest="instance_path", default=None)
