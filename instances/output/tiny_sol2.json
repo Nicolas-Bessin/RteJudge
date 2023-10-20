@@ -1,0 +1,26 @@
+{
+    "substations": [
+        {
+            "id": 1,
+            "substation_type": 1,
+            "land_cable_type": 1,
+            "linked_to_another": 0,
+            "linked_substation_id": null,
+            "linked_cable_type": null
+        },
+        {
+            "id": 2,
+            "substation_type": 1,
+            "land_cable_type": 1,
+            "linked_to_another": 1,
+            "linked_substation_id": 1,
+            "linked_cable_type": 1
+        }
+    ],
+    "turbines": [
+        {
+            "id": 1,
+            "substation_id": 1
+        }
+    ]
+}

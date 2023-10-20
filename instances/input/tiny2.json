@@ -1,0 +1,66 @@
+{
+    "general_parameters": {
+        "maximum_power": 1000,
+        "curtailing_cost": 0.4,
+        "curtailing_penalty": 0.8,
+        "maximum_curtailing": 50000,
+        "fixed_cost_cable": 1000,
+        "variable_cost_cable": 0,
+        "main_land_station": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "substation_types": [
+        {
+            "id": 1,
+            "cost": 100000,
+            "rating": 500,
+            "probability_of_failure": 0.00
+        }
+    ],
+    "land_substation_cable_types": [
+        {
+            "id": 1,
+            "fixed_cost": 2000,
+            "variable_cost": 0,
+            "probability_of_failure": 0.00,
+            "rating": 500
+        }
+    ],
+    "substation_substation_cable_types": [
+        {
+            "id": 1,
+            "fixed_cost": 1000,
+            "variable_cost": 20,
+            "probability_of_failure": 0.00,
+            "rating": 500
+        }
+    ],
+    "substation_locations": [
+        {
+            "id": 1,
+            "x": -10,
+            "y": 0
+        },
+        {
+            "id": 2,
+            "x": -20,
+            "y": 0
+        }
+    ],
+    "wind_turbines": [
+        {
+            "id": 1,
+            "x": -15,
+            "y": 0
+        }
+    ],
+    "wind_scenarios": [
+        {
+            "id": 1,
+            "probability": 1,
+            "power_generation": 100
+        }
+    ]
+}

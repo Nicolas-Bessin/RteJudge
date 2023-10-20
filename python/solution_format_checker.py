@@ -151,12 +151,13 @@ def check_substations_content(solution, instance):
             )
         elif not (linked_cable == None or 1 <= linked_cable <= max_id_sub_cable):
             str_errors.append(
-                f"The link cable type of substation {i + 1} is not valid - it doesn't exist in the list of substation-substation cable types"
+                f"The link_cable_type of substation {i + 1} is not valid - it doesn't exist in the list of substation-substation cable types"
             )
         # Link cable type must be None if liked_sub is None and vice-versa
-        if linked_sub == None != linked_cable == None:
+
+        if linked and (linked_cable == None or linked_sub == None):
             str_errors.append(
-                f"In substation {i + 1}, one of '{LINKED_CABLE_TYPE}' and '{LINKED_SUB_ID}' is None and not the other. "
+                f"In substation {i + 1}, the substation is linked to another but at least one of {LINKED_CABLE_TYPE} and {LINKED_SUB_ID} is None "
             )
 
     if str_errors:
