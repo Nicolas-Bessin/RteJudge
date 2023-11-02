@@ -160,6 +160,13 @@ def check_substations_content(solution, instance):
                 f"In substation {i + 1}, the substation is linked to another but at least one of {LINKED_CABLE_TYPE} and {LINKED_SUB_ID} is None "
             )
 
+        # Linked cable type and linked_sub should be None if the substation is not linked.
+
+        if not (linked) and not (linked_cable == None and linked_sub == None):
+            str_errors.append(
+                f"In substation {i + 1}, the substation is not linked to another but at least one of {LINKED_CABLE_TYPE} and {LINKED_SUB_ID} is not None "
+            )
+
     if str_errors:
         raise InstanceError(str_errors)
 
