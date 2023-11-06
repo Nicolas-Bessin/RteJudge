@@ -65,27 +65,30 @@ SUBSTATIONS = "substations"
 # ID = "id"
 SUB_TYPE = "substation_type"
 LAND_CABLE_TYPE = "land_cable_type"
-LINKED_TO_ANOTHER = "linked_to_another"
-LINKED_SUB_ID = "linked_substation_id"
-LINKED_CABLE_TYPE = "linked_cable_type"
 
 TURBINES = "turbines"
 # ID = "id"
 SUBSTATION_ID = "substation_id"
 
+SUBSTATION_SUBSTATION_CABLES = "substation_substation_cables"
+# SUBSTATION_ID = "substation_id"
+OTHER_SUB_ID = "other_substation_id"
+CABLE_TYPE_SUBSUB = "cable_type"
 
 # Keys needed in solutions
-KEYS_EXPECTED = [TURBINES, SUBSTATIONS]
+KEYS_EXPECTED_IDS = [TURBINES, SUBSTATIONS]
+KEYS_EXPECTED_PAIRS = [SUBSTATION_SUBSTATION_CABLES]
+KEYS_EXPECTED = KEYS_EXPECTED_IDS + KEYS_EXPECTED_PAIRS
 # Keys needed in the substation dics
 KEYS_EXPECTED_SUBSTATION = [
     ID,
     SUB_TYPE,
     LAND_CABLE_TYPE,
-    LINKED_TO_ANOTHER,
-    LINKED_SUB_ID,
-    LINKED_CABLE_TYPE,
 ]
 # Keys needed in the turbine dics
 KEYS_EXPECTED_TURBINES = [ID, SUBSTATION_ID]
+
+# Keys needed in the substation-substation cable types
+KEYS_EXPECTED_SUB_SUB_CABLE = [SUBSTATION_ID, OTHER_SUB_ID, CABLE_TYPE_SUBSUB]
 # Maximum size of values in solution
 MATCHING = {}

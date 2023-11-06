@@ -2,7 +2,8 @@ def remove_space_from_keys(dic):
     """Removes the spaces in the keys of dic.keys()"""
     clean_dic = {}
     for key in dic.keys():
-        clean_dic[key.strip()] = dic[key]
+        new_key = key.replace(" ", "")
+        clean_dic[new_key] = dic[key]
     return clean_dic
 
 
@@ -26,3 +27,12 @@ def clean_keys(raw_data):
                 clean_lis.append(remove_space_from_keys(dic))
             clean_data[key] = clean_lis
     return clean_data
+
+
+if __name__ == "__main__":
+    import loader
+
+    data1 = loader.load_json("instances/input/tiny.json")
+    data2 = loader.load_json("instances/input/tiny3.json")
+    print(data1)
+    print(data2)

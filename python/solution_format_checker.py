@@ -33,7 +33,7 @@ def check_format(solution):
     # Now that we know that it's a dictionnary, we must first check the keys
     if set(solution.keys()) != set(KEYS_EXPECTED):
         str_errors.append(
-            f"The solution must contain exactly two keys : '{SUBSTATIONS}' and '{TURBINES}'"
+            f"The solution must contain exactly three keys : '{SUBSTATIONS}' and '{TURBINES}' and '{SUBSTATION_SUBSTATION_CABLES}"
         )
 
     if str_errors:
@@ -90,6 +90,38 @@ def check_list_turbines(solution):
                 str_errors.append(f"Key {key} is missing from the dictionnary {i+1}")
             for key in extra_keys:
                 str_errors.append(f"Key {key} is not expected in the dictionnary {i+1}")
+    if str_errors:
+        raise InstanceError(str_errors)
+
+
+def check_list_subsub_cables(solution):
+    """Function checking that the list of substation-substation cables is in the right format
+    :param solution: solution given by the candidate
+    :return: raises InstanceError with details in case it spots an error
+    """
+    str_errors = []
+    sub_sub_cables = solution[SUBSTATION_SUBSTATION_CABLES]
+    if type(sub_sub_cables) != list:
+        str_errors.append(
+            f"The element at key '{SUBSTATION_SUBSTATION_CABLES}' is not a list"
+        )
+        raise InstanceError(str_errors)
+
+    for i, subsubcab_dict in enumerate(sub_sub_cables):
+        if (type(subsubcab_dict)) != dict:
+            str_errors.append(
+                f"The list of substation-substation cables must contains dictionnaries"
+            )
+            raise InstanceError(str_errors)
+
+        if set(KEYS_EXPECTED_SUB_SUB_CABLE) != set(subsubcab_dict.keys()):
+            missing_keys = set(KEYS_EXPECTED_SUB_SUB_CABLE) - set(subsubcab_dict.keys())
+            extra_keys = set(subsubcab_dict.keys()) - set(KEYS_EXPECTED_SUB_SUB_CABLE)
+            for key in missing_keys:
+                str_errors.append(f"Key {key} is missing from the dictionnary {i+1}")
+            for key in extra_keys:
+                str_errors.append(f"Key {key} is not expected in the dictionnary {i+1}")
+
     if str_errors:
         raise InstanceError(str_errors)
 
