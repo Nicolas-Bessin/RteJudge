@@ -16,12 +16,7 @@
             "substation_id": 1,
             "other_substation_id": 2,
             "cable_type": 2
-        },
-        {
-            "substation_id": 2,
-            "other_substation_id": 1,
-            "cable_type": 2
-        },
+        }
     ],
     "turbines": [
         {
