@@ -1,4 +1,5 @@
 import json
+from errors import InstanceError
 
 
 def load_json(file_path):
@@ -11,7 +12,11 @@ def load_json(file_path):
     """
 
     with open(file_path, "r") as file:
-        return json.load(file)
+        try:
+            data = json.load(file)
+            return data
+        except json.decoder.JSONDecodeError as err:
+            raise InstanceError([f"Error: bad JSON formatting : {err}"])
 
 
 def save_json(object, file_path):
