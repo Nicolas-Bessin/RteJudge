@@ -90,5 +90,3 @@ KEYS_EXPECTED_TURBINES = [ID, SUBSTATION_ID]
 
 # Keys needed in the substation-substation cable types
 KEYS_EXPECTED_SUB_SUB_CABLE = [SUBSTATION_ID, OTHER_SUB_ID, CABLE_TYPE_SUBSUB]
-# Maximum size of values in solution
-MATCHING = {}

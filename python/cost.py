@@ -12,7 +12,7 @@ def cost(instance, solution):
     """
     const_cost = construction_cost(instance, solution)
     oper_cost = operational_cost(instance, solution)
-    return const_cost + oper_cost
+    return oper_cost + const_cost
 
 
 def construction_cost(instance, solution):
@@ -40,18 +40,6 @@ def construction_cost(instance, solution):
         cable_type = substation[LAND_CABLE_TYPE]
         cost += instance[LAND_SUB_CABLE_TYPES][cable_type][FIX_COST]
         cost += instance[LAND_SUB_CABLE_TYPES][cable_type][VAR_COST] * dis_sub_land
-        # We then add the cost of the substation- substation cable, if there is one.
-        if not (substation[LINKED_TO_ANOTHER]):
-            continue
-        linked_id = substation[LINKED_SUB_ID]
-        linked_sub_pos = (
-            instance[SUBSTATION_LOCATION][linked_id][X],
-            instance[SUBSTATION_LOCATION][linked_id][Y],
-        )
-        dis_sub_sub = dist(sub_pos, linked_sub_pos)
-        link_cable_type = substation[LINKED_CABLE_TYPE]
-        cost += instance[SUB_SUB_CABLE_TYPES][link_cable_type][FIX_COST]
-        cost += instance[SUB_SUB_CABLE_TYPES][link_cable_type][VAR_COST] * dis_sub_sub
 
     # Then the costs associated with the turbines
     for id, turbine in solution[TURBINES].items():
@@ -65,6 +53,27 @@ def construction_cost(instance, solution):
         dis_turb_sub = dist(sub_pos, turb_pos)
         cost += instance[GEN_PARAMETERS][FIX_COST_CABLE]
         cost += instance[GEN_PARAMETERS][VAR_COST_CABLE] * dis_turb_sub
+
+    # Then the costs associated with the substation-substation cables
+    # BEWARE, since we duplicated each cable to treat them as two one-way cables in the converter
+    # We will count each true cable twice, thus we divide the costs by two !!!
+
+    for id, cable in solution[SUBSTATION_SUBSTATION_CABLES].items():
+        # We compute the distance
+        id1 = id
+        id2 = cable[OTHER_SUB_ID]
+        cable_type = cable[CABLE_TYPE_SUBSUB]
+        pos_sub1 = (
+            instance[SUBSTATION_LOCATION][id1][X],
+            instance[SUBSTATION_LOCATION][id1][Y],
+        )
+        pos_sub2 = (
+            instance[SUBSTATION_LOCATION][id2][X],
+            instance[SUBSTATION_LOCATION][id2][Y],
+        )
+        dis_sub_sub = dist(pos_sub1, pos_sub2)
+        cost += instance[SUB_SUB_CABLE_TYPES][cable_type][FIX_COST] / 2
+        cost += instance[SUB_SUB_CABLE_TYPES][cable_type][VAR_COST] * dis_sub_sub / 2
 
     return cost
 
@@ -93,7 +102,7 @@ def no_failure_curtailing(instance, solution, power):
     return max(0, curtailing)
 
 
-def curtailing_failed_substation(instance, sub_id, substation, turbines, power):
+def curtailing_failed_substation(instance, sub_id, turbines, power, cable):
     """Computes the curtailing of a given failed substation
     (First part of the (6) equation)
     :param instance: the instance addressed by the solution
@@ -101,14 +110,16 @@ def curtailing_failed_substation(instance, sub_id, substation, turbines, power):
     :param substation: the dictionnary for the failed substation
     :param turbines: the dictionnary of the turbines
     :param power: the power generated under the current scenario
+    :param cable: the cable that links this substation to another, if applicable
     returns the curtailing of failed substation"""
     curtailing = 0
     # First add the received power
     nb_turbines = len([1 for tu in turbines.values() if tu[SUBSTATION_ID] == sub_id])
     curtailing += power * nb_turbines
     # Then substract the power that is sent to another substation if applicable
-    if substation[LINKED_TO_ANOTHER]:
-        cable_type = substation[LINKED_CABLE_TYPE]
+    # If there is no such cable, the argument passed should be cable = None
+    if cable:
+        cable_type = cable[CABLE_TYPE_SUBSUB]
         curtailing -= instance[SUB_SUB_CABLE_TYPES][cable_type][RATING]
     return max(0, curtailing)
 
@@ -154,29 +165,25 @@ def curtailing_given_failed_sub(instance, solution, power, fail_id):
     cost = 0
     substations = solution[SUBSTATIONS]
     turbines = solution[TURBINES]
-    # Linked station, might be None
-    linked_id = substations[fail_id][LINKED_SUB_ID]
+    # Cable linking this substation to another one, might be None
+    cable = solution[SUBSTATION_SUBSTATION_CABLES].get(fail_id, None)
     # Power sent
     power_sent = 0
-    if linked_id != None:
+    if cable != None:
         nb_turbines = len(
             [1 for tu in turbines.values() if tu[SUBSTATION_ID] == fail_id]
         )
-        cable_capa = instance[SUB_SUB_CABLE_TYPES][
-            substations[fail_id][LINKED_CABLE_TYPE]
-        ][RATING]
+        cable_capa = instance[SUB_SUB_CABLE_TYPES][cable[CABLE_TYPE_SUBSUB]][RATING]
         power_sent = min(power * nb_turbines, cable_capa)
     # First add the cost of the curtailing of the failed substation
-    cost += curtailing_failed_substation(
-        instance, fail_id, substations[fail_id], turbines, power
-    )
+    cost += curtailing_failed_substation(instance, fail_id, turbines, power, cable)
     # Then iterate through the rest of the substations
     for id, sub in substations.items():
         # We already took this cost into account
         if id == fail_id:
             continue
-        # If this substation is receiving from the failed, compute the power received
-        elif id == linked_id:
+        # If this substation is receiving from the failed one, compute the power received
+        elif id == cable[OTHER_SUB_ID]:
             cost += curtailing_non_failed_substation(
                 instance, id, sub, turbines, power, power_sent
             )

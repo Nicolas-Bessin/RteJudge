@@ -12,8 +12,10 @@ def solution_checker(instance, solution):
     check_format(solution)
     check_list_substations(solution)
     check_list_turbines(solution)
+    check_list_subsub_cables(solution)
     check_substations_content(solution, instance)
     check_turbines_content(solution, instance)
+    check_subsub_cables_content(solution, instance)
 
 
 def check_format(solution):
@@ -140,16 +142,14 @@ def check_substations_content(solution, instance):
     """
     str_errors = []
     substations_list = solution[SUBSTATIONS]
-    # WE ASSUME THE IDS ARE 1 ... N, WITHOUT ANY SKIPS
-    built_substation_ids = set([sub[ID] for sub in substations_list])
-    max_id_sub_cable = len(instance[SUB_SUB_CABLE_TYPES])
     MATCHING = {
         ID: SUBSTATION_LOCATION,
         SUB_TYPE: SUBSTATION_TYPES,
         LAND_CABLE_TYPE: LAND_SUB_CABLE_TYPES,
     }
     for i, substation in enumerate(substations_list):
-        # First check the contents where the constraint is being an integer && 1 <= some_id <= max_id
+        # WE ASSUME THE IDS ARE 1 ... N, WITHOUT ANY SKIPS
+        # Check the contents where the constraint is being an integer && 1 <= some_id <= max_id
         for key, instance_key in MATCHING.items():
             max_value = len(instance[instance_key])
             id = substation[key]
@@ -159,45 +159,6 @@ def check_substations_content(solution, instance):
                 str_errors.append(
                     f"The {key} of substation {i+1} is not valid, it does not exist in the list of {instance_key}"
                 )
-        # Linked to another
-        linked = substation[LINKED_TO_ANOTHER]
-        if not (0 <= linked <= 1 and type(linked) == int):
-            str_errors.append(
-                f"The {LINKED_TO_ANOTHER} paramater of substation {i+1} must be either 1 or 0"
-            )
-        # Id of linked substation
-        linked_sub = substation[LINKED_SUB_ID]
-        if not (linked_sub == None or type(linked_sub) == int):
-            str_errors.append(
-                f"The id for the linked substation of substation {i+1} must be an integer"
-            )
-        elif not (linked_sub == None or linked_sub in built_substation_ids):
-            str_errors.append(
-                f"The substation {i+1} is linked to a substation that doesn't exist"
-            )
-        # Link cable type
-        linked_cable = substation[LINKED_CABLE_TYPE]
-        if not (linked_cable == None or type(linked_cable) == int):
-            str_errors.append(
-                f"The linked_cable_type for substation {i+1} must be an integer"
-            )
-        elif not (linked_cable == None or 1 <= linked_cable <= max_id_sub_cable):
-            str_errors.append(
-                f"The link_cable_type of substation {i + 1} is not valid - it doesn't exist in the list of substation-substation cable types"
-            )
-        # Link cable type must be None if liked_sub is None and vice-versa
-
-        if linked and (linked_cable == None or linked_sub == None):
-            str_errors.append(
-                f"In substation {i + 1}, the substation is linked to another but at least one of {LINKED_CABLE_TYPE} and {LINKED_SUB_ID} is None "
-            )
-
-        # Linked cable type and linked_sub should be None if the substation is not linked.
-
-        if not (linked) and not (linked_cable == None and linked_sub == None):
-            str_errors.append(
-                f"In substation {i + 1}, the substation is not linked to another but at least one of {LINKED_CABLE_TYPE} and {LINKED_SUB_ID} is not None "
-            )
 
     if str_errors:
         raise InstanceError(str_errors)
@@ -245,5 +206,49 @@ def check_turbines_content(solution, instance):
         str_errors.append(
             f"The turbine with id {id} does not appear in the list of turbines, but it should"
         )
+    if str_errors:
+        raise InstanceError(str_errors)
+
+
+def check_subsub_cables_content(solution, instance):
+    """
+    Function checking that the data for substation-substation cables is valid
+    -SUBSTATION_ID and OTHER_SUB_ID are within the ids where substations are built
+    -CABLE_TYPE is within the allowed ids for sub-sub cable ids
+    :param solution: the solution given by the candidate
+    :param instance: the instance addressed by the solution
+    :return raises InstanceError: if an error is found
+    """
+    str_errors = []
+    # WE ASSUME TURBINE IDs ARE 1 ... N WITHOUT SKIPS
+    max_id_cable = len(instance[SUB_SUB_CABLE_TYPES])
+    built_substation_ids = set([sub[ID] for sub in solution[SUBSTATIONS]])
+    cables_lis = solution[SUBSTATION_SUBSTATION_CABLES]
+    for i, cable in enumerate(cables_lis):
+        # Turbine ID
+        id1 = cable[SUBSTATION_ID]
+        id2 = cable[OTHER_SUB_ID]
+        cable_type = cable[CABLE_TYPE_SUBSUB]
+        if not type(id1) == int:
+            str_errors.append(f"For cable {i+1}, {SUBSTATION_ID} must be an integer")
+        if not type(id2) == int:
+            str_errors.append(f"For cable {i+1}, {OTHER_SUB_ID} must be an integer")
+        if not type(cable_type) == int:
+            str_errors.append(
+                f"For cable {i+1}, {CABLE_TYPE_SUBSUB} must be an integer"
+            )
+
+        if id1 not in built_substation_ids:
+            str_errors.append(
+                f"The cable {i+1} is linked to the substation {id1}, which does not exist."
+            )
+        if id2 not in built_substation_ids:
+            str_errors.append(
+                f"The cable {i+1} is linked to the substation {id2}, which does not exist."
+            )
+        if not (1 <= cable_type <= max_id_cable):
+            str_errors.append(
+                f"For cable {i+1}, the {CABLE_TYPE_SUBSUB} is not valid, it does not exist in the list of substation-substation cable types"
+            )
     if str_errors:
         raise InstanceError(str_errors)

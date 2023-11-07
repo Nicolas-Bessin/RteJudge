@@ -4,7 +4,7 @@ from solution_format_checker import solution_checker
 from converter import convert_instance, convert_solution
 from cost import cost
 
-size = "tiny"
+size = "tiny3"
 
 file_input = f"instances/input/{size}.json"
 file_input_conv = f"instances/input/{size}_conv1.json"
