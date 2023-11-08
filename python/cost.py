@@ -183,7 +183,7 @@ def curtailing_given_failed_sub(instance, solution, power, fail_id):
         if id == fail_id:
             continue
         # If this substation is receiving from the failed one, compute the power received
-        elif id == cable[OTHER_SUB_ID]:
+        elif not (cable == None) and id == cable[OTHER_SUB_ID]:
             cost += curtailing_non_failed_substation(
                 instance, id, sub, turbines, power, power_sent
             )

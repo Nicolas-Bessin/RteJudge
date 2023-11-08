@@ -1,0 +1,322 @@
+{
+    "substation_substation_cables": [],
+    "substations": [
+        {
+            "substation_type": 18,
+            "id": 10,
+            "land_cable_type": 18
+        },
+        {
+            "substation_type": 18,
+            "id": 15,
+            "land_cable_type": 18
+        },
+        {
+            "substation_type": 17,
+            "id": 20,
+            "land_cable_type": 17
+        }
+    ],
+    "turbines": [
+        {
+            "id": 1,
+            "substation_id": 10
+        },
+        {
+            "id": 2,
+            "substation_id": 10
+        },
+        {
+            "id": 3,
+            "substation_id": 10
+        },
+        {
+            "id": 4,
+            "substation_id": 10
+        },
+        {
+            "id": 5,
+            "substation_id": 10
+        },
+        {
+            "id": 6,
+            "substation_id": 10
+        },
+        {
+            "id": 7,
+            "substation_id": 10
+        },
+        {
+            "id": 8,
+            "substation_id": 10
+        },
+        {
+            "id": 9,
+            "substation_id": 10
+        },
+        {
+            "id": 10,
+            "substation_id": 10
+        },
+        {
+            "id": 11,
+            "substation_id": 10
+        },
+        {
+            "id": 12,
+            "substation_id": 10
+        },
+        {
+            "id": 13,
+            "substation_id": 10
+        },
+        {
+            "id": 14,
+            "substation_id": 10
+        },
+        {
+            "id": 15,
+            "substation_id": 10
+        },
+        {
+            "id": 16,
+            "substation_id": 10
+        },
+        {
+            "id": 17,
+            "substation_id": 10
+        },
+        {
+            "id": 18,
+            "substation_id": 10
+        },
+        {
+            "id": 19,
+            "substation_id": 10
+        },
+        {
+            "id": 20,
+            "substation_id": 10
+        },
+        {
+            "id": 21,
+            "substation_id": 10
+        },
+        {
+            "id": 22,
+            "substation_id": 10
+        },
+        {
+            "id": 23,
+            "substation_id": 10
+        },
+        {
+            "id": 24,
+            "substation_id": 10
+        },
+        {
+            "id": 25,
+            "substation_id": 10
+        },
+        {
+            "id": 26,
+            "substation_id": 10
+        },
+        {
+            "id": 27,
+            "substation_id": 10
+        },
+        {
+            "id": 28,
+            "substation_id": 10
+        },
+        {
+            "id": 29,
+            "substation_id": 10
+        },
+        {
+            "id": 30,
+            "substation_id": 15
+        },
+        {
+            "id": 31,
+            "substation_id": 15
+        },
+        {
+            "id": 32,
+            "substation_id": 15
+        },
+        {
+            "id": 33,
+            "substation_id": 15
+        },
+        {
+            "id": 34,
+            "substation_id": 15
+        },
+        {
+            "id": 35,
+            "substation_id": 15
+        },
+        {
+            "id": 36,
+            "substation_id": 15
+        },
+        {
+            "id": 37,
+            "substation_id": 15
+        },
+        {
+            "id": 38,
+            "substation_id": 15
+        },
+        {
+            "id": 39,
+            "substation_id": 15
+        },
+        {
+            "id": 40,
+            "substation_id": 15
+        },
+        {
+            "id": 41,
+            "substation_id": 15
+        },
+        {
+            "id": 42,
+            "substation_id": 15
+        },
+        {
+            "id": 43,
+            "substation_id": 15
+        },
+        {
+            "id": 44,
+            "substation_id": 15
+        },
+        {
+            "id": 45,
+            "substation_id": 15
+        },
+        {
+            "id": 46,
+            "substation_id": 15
+        },
+        {
+            "id": 47,
+            "substation_id": 15
+        },
+        {
+            "id": 48,
+            "substation_id": 15
+        },
+        {
+            "id": 49,
+            "substation_id": 15
+        },
+        {
+            "id": 50,
+            "substation_id": 15
+        },
+        {
+            "id": 51,
+            "substation_id": 15
+        },
+        {
+            "id": 52,
+            "substation_id": 15
+        },
+        {
+            "id": 53,
+            "substation_id": 15
+        },
+        {
+            "id": 54,
+            "substation_id": 15
+        },
+        {
+            "id": 55,
+            "substation_id": 15
+        },
+        {
+            "id": 56,
+            "substation_id": 20
+        },
+        {
+            "id": 57,
+            "substation_id": 20
+        },
+        {
+            "id": 58,
+            "substation_id": 15
+        },
+        {
+            "id": 59,
+            "substation_id": 15
+        },
+        {
+            "id": 60,
+            "substation_id": 15
+        },
+        {
+            "id": 61,
+            "substation_id": 20
+        },
+        {
+            "id": 62,
+            "substation_id": 20
+        },
+        {
+            "id": 63,
+            "substation_id": 20
+        },
+        {
+            "id": 64,
+            "substation_id": 20
+        },
+        {
+            "id": 65,
+            "substation_id": 20
+        },
+        {
+            "id": 66,
+            "substation_id": 20
+        },
+        {
+            "id": 67,
+            "substation_id": 20
+        },
+        {
+            "id": 68,
+            "substation_id": 20
+        },
+        {
+            "id": 69,
+            "substation_id": 20
+        },
+        {
+            "id": 70,
+            "substation_id": 20
+        },
+        {
+            "id": 71,
+            "substation_id": 20
+        },
+        {
+            "id": 72,
+            "substation_id": 20
+        },
+        {
+            "id": 73,
+            "substation_id": 20
+        },
+        {
+            "id": 74,
+            "substation_id": 20
+        },
+        {
+            "id": 75,
+            "substation_id": 20
+        }
+    ]
+}
