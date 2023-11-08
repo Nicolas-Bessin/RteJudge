@@ -162,7 +162,7 @@ def curtailing_given_failed_sub(instance, solution, power, fail_id):
     :param fail_id: id of the failed substation
     :return: score: the curtailing associated with the solution under this scenario
     """
-    cost = 0
+    curtailing = 0
     substations = solution[SUBSTATIONS]
     turbines = solution[TURBINES]
     # Cable linking this substation to another one, might be None
@@ -176,8 +176,10 @@ def curtailing_given_failed_sub(instance, solution, power, fail_id):
         cable_capa = instance[SUB_SUB_CABLE_TYPES][cable[CABLE_TYPE_SUBSUB]][RATING]
         power_sent = min(power_received, cable_capa)
     # First add the cost of the curtailing of the failed substation
-    cost += curtailing_failed_substation(instance, fail_id, turbines, power, cable)
-    print(f"substation {fail_id} has curtailing {cost}")
+    curtailing += curtailing_failed_substation(
+        instance, fail_id, turbines, power, cable
+    )
+    # print(f"substation {fail_id} has curtailing {curtailing}")
     # Then iterate through the rest of the substations
     for id, sub in substations.items():
         # We already took this cost into account
@@ -185,13 +187,15 @@ def curtailing_given_failed_sub(instance, solution, power, fail_id):
             continue
         # If this substation is receiving from the failed one, use the power sent to it.
         elif not (cable == None) and id == cable[OTHER_SUB_ID]:
-            cost += curtailing_non_failed_substation(
+            curtailing += curtailing_non_failed_substation(
                 instance, id, sub, turbines, power, power_sent
             )
         else:
-            cost += curtailing_non_failed_substation(instance, id, sub, turbines, power)
+            curtailing += curtailing_non_failed_substation(
+                instance, id, sub, turbines, power
+            )
 
-    return cost
+    return curtailing
 
 
 def cost_of_curtailing(instance, curtailing):
@@ -250,7 +254,7 @@ def operational_cost(instance, solution):
             fail_curt = curtailing_given_failed_sub(
                 instance, solution, scenario_power, id
             )
-            print(f"For substation {id}, the curtailing under failure is {fail_curt}")
+            # print(f"For substation {id}, the curtailing under failure is {fail_curt}")
             scenario_cost += failure_probas[id] * cost_of_curtailing(
                 instance, fail_curt
             )

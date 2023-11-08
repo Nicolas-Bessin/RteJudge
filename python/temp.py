@@ -8,7 +8,6 @@ from errors import InstanceError
 size = "tiny3"
 
 names = ["small", "medium", "large"]
-names = ["tiny3"]
 
 if __name__ == "__main__":
     for size in names:
