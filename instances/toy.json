@@ -1,0 +1,142 @@
+{
+    "general_parameters": {
+        "curtailing_cost": 350.0,
+        "curtailing_penalty": 35000.0,
+        "fixed_cost_cable": 5.0,
+        "main_land_station": {
+            "x": 0,
+            "y": 0
+        },
+        "maximum_curtailing": 0.1,
+        "maximum_power": 18.0,
+        "variable_cost_cable": 0.5
+    },
+    "land_substation_cable_types": [
+        {
+            "fixed_cost": 0.0,
+            "id": 1,
+            "probability_of_failure": 5.479452054794521e-5,
+            "rating": 200,
+            "variable_cost": 0.015
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 2,
+            "probability_of_failure": 5.479452054794521e-5,
+            "rating": 300,
+            "variable_cost": 0.045
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 3,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 200,
+            "variable_cost": 0.01
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 4,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 300,
+            "variable_cost": 0.03
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 5,
+            "probability_of_failure": 0.0008219178082191781,
+            "rating": 200,
+            "variable_cost": 0.0085
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 6,
+            "probability_of_failure": 0.0008219178082191781,
+            "rating": 300,
+            "variable_cost": 0.0255
+        }
+    ],
+    "substation_locations": [
+        {
+            "id": 1,
+            "x": 40.0,
+            "y": 0.0
+        },
+        {
+            "id": 2,
+            "x": 35.0,
+            "y": 0.0
+        }
+    ],
+    "substation_substation_cable_types": [
+        {
+            "fixed_cost": 0.0,
+            "id": 1,
+            "rating": 100,
+            "variable_cost": 0.01
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 2,
+            "rating": 200,
+            "variable_cost": 0.02
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 3,
+            "rating": 100,
+            "variable_cost": 0.009000000000000001
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 4,
+            "rating": 200,
+            "variable_cost": 0.018000000000000002
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 5,
+            "rating": 100,
+            "variable_cost": 0.0085
+        },
+        {
+            "fixed_cost": 0.0,
+            "id": 6,
+            "rating": 200,
+            "variable_cost": 0.017
+        }
+    ],
+    "substation_types": [
+        {
+            "cost": 200.0,
+            "id": 1,
+            "probability_of_failure": 6.84931506849315e-5,
+            "rating": 200
+        },
+        {
+            "cost": 160.0,
+            "id": 2,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 200
+        },
+        {
+            "cost": 140.0,
+            "id": 3,
+            "probability_of_failure": 0.0008219178082191781,
+            "rating": 200
+        }
+    ],
+    "wind_scenarios": [
+        {
+            "id": 1,
+            "power_generation": 1.0,
+            "probability": 1.0
+        }
+    ],
+    "wind_turbines": [
+        {
+            "id": 1,
+            "x": 80,
+            "y": 0
+        }
+    ]
+}

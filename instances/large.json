@@ -1,0 +1,1759 @@
+{
+    "general_parameters": {
+        "curtailing_cost": 35.0,
+        "curtailing_penalty": 3500.0,
+        "fixed_cost_cable": 5.0,
+        "main_land_station": {
+            "x": 0,
+            "y": 0
+        },
+        "maximum_curtailing": 300.0,
+        "maximum_power": 18.0,
+        "variable_cost_cable": 0.5
+    },
+    "land_substation_cable_types": [
+        {
+            "fixed_cost": 48.0,
+            "id": 1,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 200,
+            "variable_cost": 2.4
+        },
+        {
+            "fixed_cost": 48.0,
+            "id": 2,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 300,
+            "variable_cost": 2.4
+        },
+        {
+            "fixed_cost": 48.0,
+            "id": 3,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 500,
+            "variable_cost": 3.5999999999999996
+        },
+        {
+            "fixed_cost": 48.0,
+            "id": 4,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 900,
+            "variable_cost": 4.8
+        },
+        {
+            "fixed_cost": 48.0,
+            "id": 5,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 1450,
+            "variable_cost": 6.0
+        },
+        {
+            "fixed_cost": 48.0,
+            "id": 6,
+            "probability_of_failure": 0.000273972602739726,
+            "rating": 2400,
+            "variable_cost": 8.4
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 7,
+            "probability_of_failure": 0.0013698630136986301,
+            "rating": 200,
+            "variable_cost": 2.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 8,
+            "probability_of_failure": 0.0013698630136986301,
+            "rating": 300,
+            "variable_cost": 2.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 9,
+            "probability_of_failure": 0.0013698630136986301,
+            "rating": 500,
+            "variable_cost": 3.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 10,
+            "probability_of_failure": 0.0013698630136986301,
+            "rating": 900,
+            "variable_cost": 4.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 11,
+            "probability_of_failure": 0.0013698630136986301,
+            "rating": 1450,
+            "variable_cost": 5.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 12,
+            "probability_of_failure": 0.0013698630136986301,
+            "rating": 2400,
+            "variable_cost": 7.0
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 13,
+            "probability_of_failure": 0.002054794520547945,
+            "rating": 200,
+            "variable_cost": 1.8
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 14,
+            "probability_of_failure": 0.002054794520547945,
+            "rating": 300,
+            "variable_cost": 1.8
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 15,
+            "probability_of_failure": 0.002054794520547945,
+            "rating": 500,
+            "variable_cost": 2.7
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 16,
+            "probability_of_failure": 0.002054794520547945,
+            "rating": 900,
+            "variable_cost": 3.6
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 17,
+            "probability_of_failure": 0.002054794520547945,
+            "rating": 1450,
+            "variable_cost": 4.5
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 18,
+            "probability_of_failure": 0.002054794520547945,
+            "rating": 2400,
+            "variable_cost": 6.3
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 19,
+            "probability_of_failure": 0.00410958904109589,
+            "rating": 200,
+            "variable_cost": 1.7
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 20,
+            "probability_of_failure": 0.00410958904109589,
+            "rating": 300,
+            "variable_cost": 1.7
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 21,
+            "probability_of_failure": 0.00410958904109589,
+            "rating": 500,
+            "variable_cost": 2.55
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 22,
+            "probability_of_failure": 0.00410958904109589,
+            "rating": 900,
+            "variable_cost": 3.4
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 23,
+            "probability_of_failure": 0.00410958904109589,
+            "rating": 1450,
+            "variable_cost": 4.25
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 24,
+            "probability_of_failure": 0.00410958904109589,
+            "rating": 2400,
+            "variable_cost": 5.95
+        }
+    ],
+    "substation_locations": [
+        {
+            "id": 1,
+            "x": 25.0,
+            "y": -3.0
+        },
+        {
+            "id": 2,
+            "x": 35.0,
+            "y": -3.0
+        },
+        {
+            "id": 3,
+            "x": 40.0,
+            "y": -3.0
+        },
+        {
+            "id": 4,
+            "x": 45.0,
+            "y": -3.0
+        },
+        {
+            "id": 5,
+            "x": 55.0,
+            "y": -3.0
+        },
+        {
+            "id": 6,
+            "x": 65.0,
+            "y": -3.0
+        },
+        {
+            "id": 7,
+            "x": 25.0,
+            "y": -1.5
+        },
+        {
+            "id": 8,
+            "x": 35.0,
+            "y": -1.5
+        },
+        {
+            "id": 9,
+            "x": 40.0,
+            "y": -1.5
+        },
+        {
+            "id": 10,
+            "x": 45.0,
+            "y": -1.5
+        },
+        {
+            "id": 11,
+            "x": 55.0,
+            "y": -1.5
+        },
+        {
+            "id": 12,
+            "x": 65.0,
+            "y": -1.5
+        },
+        {
+            "id": 13,
+            "x": 25.0,
+            "y": 0.0
+        },
+        {
+            "id": 14,
+            "x": 35.0,
+            "y": 0.0
+        },
+        {
+            "id": 15,
+            "x": 40.0,
+            "y": 0.0
+        },
+        {
+            "id": 16,
+            "x": 45.0,
+            "y": 0.0
+        },
+        {
+            "id": 17,
+            "x": 55.0,
+            "y": 0.0
+        },
+        {
+            "id": 18,
+            "x": 65.0,
+            "y": 0.0
+        },
+        {
+            "id": 19,
+            "x": 25.0,
+            "y": 1.5
+        },
+        {
+            "id": 20,
+            "x": 35.0,
+            "y": 1.5
+        },
+        {
+            "id": 21,
+            "x": 40.0,
+            "y": 1.5
+        },
+        {
+            "id": 22,
+            "x": 45.0,
+            "y": 1.5
+        },
+        {
+            "id": 23,
+            "x": 55.0,
+            "y": 1.5
+        },
+        {
+            "id": 24,
+            "x": 65.0,
+            "y": 1.5
+        },
+        {
+            "id": 25,
+            "x": 25.0,
+            "y": 3.0
+        },
+        {
+            "id": 26,
+            "x": 35.0,
+            "y": 3.0
+        },
+        {
+            "id": 27,
+            "x": 40.0,
+            "y": 3.0
+        },
+        {
+            "id": 28,
+            "x": 45.0,
+            "y": 3.0
+        },
+        {
+            "id": 29,
+            "x": 55.0,
+            "y": 3.0
+        },
+        {
+            "id": 30,
+            "x": 65.0,
+            "y": 3.0
+        }
+    ],
+    "substation_substation_cable_types": [
+        {
+            "fixed_cost": 40.0,
+            "id": 1,
+            "rating": 100,
+            "variable_cost": 2.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 2,
+            "rating": 200,
+            "variable_cost": 2.0
+        },
+        {
+            "fixed_cost": 40.0,
+            "id": 3,
+            "rating": 300,
+            "variable_cost": 2.0
+        },
+        {
+            "fixed_cost": 50.0,
+            "id": 4,
+            "rating": 500,
+            "variable_cost": 3.0
+        },
+        {
+            "fixed_cost": 50.0,
+            "id": 5,
+            "rating": 900,
+            "variable_cost": 4.0
+        },
+        {
+            "fixed_cost": 60.0,
+            "id": 6,
+            "rating": 1450,
+            "variable_cost": 5.0
+        },
+        {
+            "fixed_cost": 60.0,
+            "id": 7,
+            "rating": 2400,
+            "variable_cost": 7.0
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 8,
+            "rating": 100,
+            "variable_cost": 1.8
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 9,
+            "rating": 200,
+            "variable_cost": 1.8
+        },
+        {
+            "fixed_cost": 36.0,
+            "id": 10,
+            "rating": 300,
+            "variable_cost": 1.8
+        },
+        {
+            "fixed_cost": 45.0,
+            "id": 11,
+            "rating": 500,
+            "variable_cost": 2.7
+        },
+        {
+            "fixed_cost": 45.0,
+            "id": 12,
+            "rating": 900,
+            "variable_cost": 3.6
+        },
+        {
+            "fixed_cost": 54.0,
+            "id": 13,
+            "rating": 1450,
+            "variable_cost": 4.5
+        },
+        {
+            "fixed_cost": 54.0,
+            "id": 14,
+            "rating": 2400,
+            "variable_cost": 6.3
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 15,
+            "rating": 100,
+            "variable_cost": 1.7
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 16,
+            "rating": 200,
+            "variable_cost": 1.7
+        },
+        {
+            "fixed_cost": 34.0,
+            "id": 17,
+            "rating": 300,
+            "variable_cost": 1.7
+        },
+        {
+            "fixed_cost": 42.5,
+            "id": 18,
+            "rating": 500,
+            "variable_cost": 2.55
+        },
+        {
+            "fixed_cost": 42.5,
+            "id": 19,
+            "rating": 900,
+            "variable_cost": 3.4
+        },
+        {
+            "fixed_cost": 51.0,
+            "id": 20,
+            "rating": 1450,
+            "variable_cost": 4.25
+        },
+        {
+            "fixed_cost": 51.0,
+            "id": 21,
+            "rating": 2400,
+            "variable_cost": 5.95
+        }
+    ],
+    "substation_types": [
+        {
+            "cost": 240.0,
+            "id": 1,
+            "probability_of_failure": 1.3698630136986302e-5,
+            "rating": 200
+        },
+        {
+            "cost": 360.0,
+            "id": 2,
+            "probability_of_failure": 1.3698630136986302e-5,
+            "rating": 300
+        },
+        {
+            "cost": 600.0,
+            "id": 3,
+            "probability_of_failure": 1.3698630136986302e-5,
+            "rating": 500
+        },
+        {
+            "cost": 1080.0,
+            "id": 4,
+            "probability_of_failure": 1.3698630136986302e-5,
+            "rating": 900
+        },
+        {
+            "cost": 1740.0,
+            "id": 5,
+            "probability_of_failure": 1.3698630136986302e-5,
+            "rating": 1450
+        },
+        {
+            "cost": 2880.0,
+            "id": 6,
+            "probability_of_failure": 1.3698630136986302e-5,
+            "rating": 2400
+        },
+        {
+            "cost": 200.0,
+            "id": 7,
+            "probability_of_failure": 0.000136986301369863,
+            "rating": 200
+        },
+        {
+            "cost": 300.0,
+            "id": 8,
+            "probability_of_failure": 0.000136986301369863,
+            "rating": 300
+        },
+        {
+            "cost": 500.0,
+            "id": 9,
+            "probability_of_failure": 0.000136986301369863,
+            "rating": 500
+        },
+        {
+            "cost": 900.0,
+            "id": 10,
+            "probability_of_failure": 0.000136986301369863,
+            "rating": 900
+        },
+        {
+            "cost": 1450.0,
+            "id": 11,
+            "probability_of_failure": 0.000136986301369863,
+            "rating": 1450
+        },
+        {
+            "cost": 2400.0,
+            "id": 12,
+            "probability_of_failure": 0.000136986301369863,
+            "rating": 2400
+        },
+        {
+            "cost": 190.0,
+            "id": 13,
+            "probability_of_failure": 0.000547945205479452,
+            "rating": 200
+        },
+        {
+            "cost": 285.0,
+            "id": 14,
+            "probability_of_failure": 0.000547945205479452,
+            "rating": 300
+        },
+        {
+            "cost": 475.0,
+            "id": 15,
+            "probability_of_failure": 0.000547945205479452,
+            "rating": 500
+        },
+        {
+            "cost": 855.0,
+            "id": 16,
+            "probability_of_failure": 0.000547945205479452,
+            "rating": 900
+        },
+        {
+            "cost": 1377.5,
+            "id": 17,
+            "probability_of_failure": 0.000547945205479452,
+            "rating": 1450
+        },
+        {
+            "cost": 2280.0,
+            "id": 18,
+            "probability_of_failure": 0.000547945205479452,
+            "rating": 2400
+        },
+        {
+            "cost": 180.0,
+            "id": 19,
+            "probability_of_failure": 0.002191780821917808,
+            "rating": 200
+        },
+        {
+            "cost": 270.0,
+            "id": 20,
+            "probability_of_failure": 0.002191780821917808,
+            "rating": 300
+        },
+        {
+            "cost": 450.0,
+            "id": 21,
+            "probability_of_failure": 0.002191780821917808,
+            "rating": 500
+        },
+        {
+            "cost": 810.0,
+            "id": 22,
+            "probability_of_failure": 0.002191780821917808,
+            "rating": 900
+        },
+        {
+            "cost": 1305.0,
+            "id": 23,
+            "probability_of_failure": 0.002191780821917808,
+            "rating": 1450
+        },
+        {
+            "cost": 2160.0,
+            "id": 24,
+            "probability_of_failure": 0.002191780821917808,
+            "rating": 2400
+        }
+    ],
+    "wind_scenarios": [
+        {
+            "id": 1,
+            "power_generation": 0.54,
+            "probability": 100.0
+        },
+        {
+            "id": 2,
+            "power_generation": 0.86,
+            "probability": 117.0
+        },
+        {
+            "id": 3,
+            "power_generation": 0.09,
+            "probability": 88.0
+        },
+        {
+            "id": 4,
+            "power_generation": 0.35,
+            "probability": 103.0
+        },
+        {
+            "id": 5,
+            "power_generation": 0.22,
+            "probability": 75.0
+        },
+        {
+            "id": 6,
+            "power_generation": 0.38,
+            "probability": 100.0
+        },
+        {
+            "id": 7,
+            "power_generation": 0.56,
+            "probability": 110.0
+        },
+        {
+            "id": 8,
+            "power_generation": 0.2,
+            "probability": 104.0
+        },
+        {
+            "id": 9,
+            "power_generation": 0.89,
+            "probability": 92.0
+        },
+        {
+            "id": 10,
+            "power_generation": 0.06,
+            "probability": 100.0
+        },
+        {
+            "id": 11,
+            "power_generation": 0.05,
+            "probability": 97.0
+        },
+        {
+            "id": 12,
+            "power_generation": 0.48,
+            "probability": 108.0
+        },
+        {
+            "id": 13,
+            "power_generation": 0.49,
+            "probability": 111.0
+        },
+        {
+            "id": 14,
+            "power_generation": 0.57,
+            "probability": 107.0
+        },
+        {
+            "id": 15,
+            "power_generation": 0.67,
+            "probability": 91.0
+        },
+        {
+            "id": 16,
+            "power_generation": 0.71,
+            "probability": 100.0
+        },
+        {
+            "id": 17,
+            "power_generation": 0.83,
+            "probability": 114.0
+        },
+        {
+            "id": 18,
+            "power_generation": 0.24,
+            "probability": 114.0
+        },
+        {
+            "id": 19,
+            "power_generation": 0.11,
+            "probability": 95.0
+        },
+        {
+            "id": 20,
+            "power_generation": 0.95,
+            "probability": 94.0
+        },
+        {
+            "id": 21,
+            "power_generation": 0.3,
+            "probability": 100.0
+        },
+        {
+            "id": 22,
+            "power_generation": 0.74,
+            "probability": 102.0
+        },
+        {
+            "id": 23,
+            "power_generation": 0.08,
+            "probability": 109.0
+        },
+        {
+            "id": 24,
+            "power_generation": 0.7,
+            "probability": 108.0
+        },
+        {
+            "id": 25,
+            "power_generation": 0.58,
+            "probability": 111.0
+        },
+        {
+            "id": 26,
+            "power_generation": 0.76,
+            "probability": 96.0
+        },
+        {
+            "id": 27,
+            "power_generation": 0.78,
+            "probability": 111.0
+        },
+        {
+            "id": 28,
+            "power_generation": 0.34,
+            "probability": 118.0
+        },
+        {
+            "id": 29,
+            "power_generation": 0.88,
+            "probability": 90.0
+        },
+        {
+            "id": 30,
+            "power_generation": 0.81,
+            "probability": 99.0
+        },
+        {
+            "id": 31,
+            "power_generation": 0.63,
+            "probability": 107.0
+        },
+        {
+            "id": 32,
+            "power_generation": 0.27,
+            "probability": 100.0
+        },
+        {
+            "id": 33,
+            "power_generation": 0.46,
+            "probability": 96.0
+        },
+        {
+            "id": 34,
+            "power_generation": 0.19,
+            "probability": 96.0
+        },
+        {
+            "id": 35,
+            "power_generation": 0.4,
+            "probability": 90.0
+        },
+        {
+            "id": 36,
+            "power_generation": 0.37,
+            "probability": 107.0
+        },
+        {
+            "id": 37,
+            "power_generation": 0.36,
+            "probability": 92.0
+        },
+        {
+            "id": 38,
+            "power_generation": 0.42,
+            "probability": 92.0
+        },
+        {
+            "id": 39,
+            "power_generation": 0.12,
+            "probability": 90.0
+        },
+        {
+            "id": 40,
+            "power_generation": 0.23,
+            "probability": 118.0
+        },
+        {
+            "id": 41,
+            "power_generation": 0.39,
+            "probability": 110.0
+        },
+        {
+            "id": 42,
+            "power_generation": 0.75,
+            "probability": 111.0
+        },
+        {
+            "id": 43,
+            "power_generation": 0.99,
+            "probability": 99.0
+        },
+        {
+            "id": 44,
+            "power_generation": 0.96,
+            "probability": 104.0
+        },
+        {
+            "id": 45,
+            "power_generation": 0.32,
+            "probability": 99.0
+        },
+        {
+            "id": 46,
+            "power_generation": 0.26,
+            "probability": 82.0
+        },
+        {
+            "id": 47,
+            "power_generation": 0.16,
+            "probability": 92.0
+        },
+        {
+            "id": 48,
+            "power_generation": 0.45,
+            "probability": 86.0
+        },
+        {
+            "id": 49,
+            "power_generation": 0.25,
+            "probability": 126.0
+        },
+        {
+            "id": 50,
+            "power_generation": 0.0,
+            "probability": 50.0
+        },
+        {
+            "id": 51,
+            "power_generation": 0.85,
+            "probability": 83.0
+        },
+        {
+            "id": 52,
+            "power_generation": 0.9,
+            "probability": 86.0
+        },
+        {
+            "id": 53,
+            "power_generation": 0.8,
+            "probability": 100.0
+        },
+        {
+            "id": 54,
+            "power_generation": 0.14,
+            "probability": 105.0
+        },
+        {
+            "id": 55,
+            "power_generation": 0.98,
+            "probability": 102.0
+        },
+        {
+            "id": 56,
+            "power_generation": 0.5,
+            "probability": 102.0
+        },
+        {
+            "id": 57,
+            "power_generation": 0.55,
+            "probability": 109.0
+        },
+        {
+            "id": 58,
+            "power_generation": 0.02,
+            "probability": 66.0
+        },
+        {
+            "id": 59,
+            "power_generation": 0.69,
+            "probability": 109.0
+        },
+        {
+            "id": 60,
+            "power_generation": 0.77,
+            "probability": 120.0
+        },
+        {
+            "id": 61,
+            "power_generation": 0.73,
+            "probability": 98.0
+        },
+        {
+            "id": 62,
+            "power_generation": 0.47,
+            "probability": 105.0
+        },
+        {
+            "id": 63,
+            "power_generation": 0.79,
+            "probability": 99.0
+        },
+        {
+            "id": 64,
+            "power_generation": 0.64,
+            "probability": 94.0
+        },
+        {
+            "id": 65,
+            "power_generation": 0.62,
+            "probability": 106.0
+        },
+        {
+            "id": 66,
+            "power_generation": 0.44,
+            "probability": 104.0
+        },
+        {
+            "id": 67,
+            "power_generation": 0.92,
+            "probability": 100.0
+        },
+        {
+            "id": 68,
+            "power_generation": 0.43,
+            "probability": 104.0
+        },
+        {
+            "id": 69,
+            "power_generation": 0.04,
+            "probability": 100.0
+        },
+        {
+            "id": 70,
+            "power_generation": 0.72,
+            "probability": 100.0
+        },
+        {
+            "id": 71,
+            "power_generation": 0.66,
+            "probability": 96.0
+        },
+        {
+            "id": 72,
+            "power_generation": 0.84,
+            "probability": 90.0
+        },
+        {
+            "id": 73,
+            "power_generation": 0.51,
+            "probability": 108.0
+        },
+        {
+            "id": 74,
+            "power_generation": 0.93,
+            "probability": 97.0
+        },
+        {
+            "id": 75,
+            "power_generation": 1.0,
+            "probability": 41.0
+        },
+        {
+            "id": 76,
+            "power_generation": 0.28,
+            "probability": 94.0
+        },
+        {
+            "id": 77,
+            "power_generation": 0.68,
+            "probability": 119.0
+        },
+        {
+            "id": 78,
+            "power_generation": 0.15,
+            "probability": 99.0
+        },
+        {
+            "id": 79,
+            "power_generation": 0.01,
+            "probability": 91.0
+        },
+        {
+            "id": 80,
+            "power_generation": 0.07,
+            "probability": 77.0
+        },
+        {
+            "id": 81,
+            "power_generation": 0.31,
+            "probability": 113.0
+        },
+        {
+            "id": 82,
+            "power_generation": 0.65,
+            "probability": 120.0
+        },
+        {
+            "id": 83,
+            "power_generation": 0.87,
+            "probability": 94.0
+        },
+        {
+            "id": 84,
+            "power_generation": 0.97,
+            "probability": 97.0
+        },
+        {
+            "id": 85,
+            "power_generation": 0.59,
+            "probability": 101.0
+        },
+        {
+            "id": 86,
+            "power_generation": 0.18,
+            "probability": 84.0
+        },
+        {
+            "id": 87,
+            "power_generation": 0.33,
+            "probability": 81.0
+        },
+        {
+            "id": 88,
+            "power_generation": 0.91,
+            "probability": 99.0
+        },
+        {
+            "id": 89,
+            "power_generation": 0.1,
+            "probability": 69.0
+        },
+        {
+            "id": 90,
+            "power_generation": 0.82,
+            "probability": 115.0
+        },
+        {
+            "id": 91,
+            "power_generation": 0.13,
+            "probability": 96.0
+        },
+        {
+            "id": 92,
+            "power_generation": 0.21,
+            "probability": 87.0
+        },
+        {
+            "id": 93,
+            "power_generation": 0.94,
+            "probability": 92.0
+        },
+        {
+            "id": 94,
+            "power_generation": 0.61,
+            "probability": 120.0
+        },
+        {
+            "id": 95,
+            "power_generation": 0.53,
+            "probability": 122.0
+        },
+        {
+            "id": 96,
+            "power_generation": 0.03,
+            "probability": 104.0
+        },
+        {
+            "id": 97,
+            "power_generation": 0.52,
+            "probability": 103.0
+        },
+        {
+            "id": 98,
+            "power_generation": 0.17,
+            "probability": 95.0
+        },
+        {
+            "id": 99,
+            "power_generation": 0.29,
+            "probability": 103.0
+        },
+        {
+            "id": 100,
+            "power_generation": 0.41,
+            "probability": 106.0
+        },
+        {
+            "id": 101,
+            "power_generation": 0.6,
+            "probability": 84.0
+        }
+    ],
+    "wind_turbines": [
+        {
+            "id": 1,
+            "x": 78.5,
+            "y": -3.5
+        },
+        {
+            "id": 2,
+            "x": 79.0,
+            "y": -3.5
+        },
+        {
+            "id": 3,
+            "x": 79.5,
+            "y": -3.5
+        },
+        {
+            "id": 4,
+            "x": 80.0,
+            "y": -3.5
+        },
+        {
+            "id": 5,
+            "x": 80.5,
+            "y": -3.5
+        },
+        {
+            "id": 6,
+            "x": 81.0,
+            "y": -3.5
+        },
+        {
+            "id": 7,
+            "x": 81.5,
+            "y": -3.5
+        },
+        {
+            "id": 8,
+            "x": 82.0,
+            "y": -3.5
+        },
+        {
+            "id": 9,
+            "x": 78.5,
+            "y": -3.0
+        },
+        {
+            "id": 10,
+            "x": 79.0,
+            "y": -3.0
+        },
+        {
+            "id": 11,
+            "x": 79.5,
+            "y": -3.0
+        },
+        {
+            "id": 12,
+            "x": 80.0,
+            "y": -3.0
+        },
+        {
+            "id": 13,
+            "x": 80.5,
+            "y": -3.0
+        },
+        {
+            "id": 14,
+            "x": 81.0,
+            "y": -3.0
+        },
+        {
+            "id": 15,
+            "x": 81.5,
+            "y": -3.0
+        },
+        {
+            "id": 16,
+            "x": 82.0,
+            "y": -3.0
+        },
+        {
+            "id": 17,
+            "x": 78.5,
+            "y": -2.5
+        },
+        {
+            "id": 18,
+            "x": 79.0,
+            "y": -2.5
+        },
+        {
+            "id": 19,
+            "x": 79.5,
+            "y": -2.5
+        },
+        {
+            "id": 20,
+            "x": 80.0,
+            "y": -2.5
+        },
+        {
+            "id": 21,
+            "x": 80.5,
+            "y": -2.5
+        },
+        {
+            "id": 22,
+            "x": 81.0,
+            "y": -2.5
+        },
+        {
+            "id": 23,
+            "x": 81.5,
+            "y": -2.5
+        },
+        {
+            "id": 24,
+            "x": 82.0,
+            "y": -2.5
+        },
+        {
+            "id": 25,
+            "x": 78.5,
+            "y": -2.0
+        },
+        {
+            "id": 26,
+            "x": 79.0,
+            "y": -2.0
+        },
+        {
+            "id": 27,
+            "x": 79.5,
+            "y": -2.0
+        },
+        {
+            "id": 28,
+            "x": 80.0,
+            "y": -2.0
+        },
+        {
+            "id": 29,
+            "x": 80.5,
+            "y": -2.0
+        },
+        {
+            "id": 30,
+            "x": 81.0,
+            "y": -2.0
+        },
+        {
+            "id": 31,
+            "x": 81.5,
+            "y": -2.0
+        },
+        {
+            "id": 32,
+            "x": 82.0,
+            "y": -2.0
+        },
+        {
+            "id": 33,
+            "x": 78.5,
+            "y": -1.5
+        },
+        {
+            "id": 34,
+            "x": 79.0,
+            "y": -1.5
+        },
+        {
+            "id": 35,
+            "x": 79.5,
+            "y": -1.5
+        },
+        {
+            "id": 36,
+            "x": 80.0,
+            "y": -1.5
+        },
+        {
+            "id": 37,
+            "x": 80.5,
+            "y": -1.5
+        },
+        {
+            "id": 38,
+            "x": 81.0,
+            "y": -1.5
+        },
+        {
+            "id": 39,
+            "x": 81.5,
+            "y": -1.5
+        },
+        {
+            "id": 40,
+            "x": 82.0,
+            "y": -1.5
+        },
+        {
+            "id": 41,
+            "x": 78.5,
+            "y": -1.0
+        },
+        {
+            "id": 42,
+            "x": 79.0,
+            "y": -1.0
+        },
+        {
+            "id": 43,
+            "x": 79.5,
+            "y": -1.0
+        },
+        {
+            "id": 44,
+            "x": 80.0,
+            "y": -1.0
+        },
+        {
+            "id": 45,
+            "x": 80.5,
+            "y": -1.0
+        },
+        {
+            "id": 46,
+            "x": 81.0,
+            "y": -1.0
+        },
+        {
+            "id": 47,
+            "x": 81.5,
+            "y": -1.0
+        },
+        {
+            "id": 48,
+            "x": 82.0,
+            "y": -1.0
+        },
+        {
+            "id": 49,
+            "x": 78.5,
+            "y": -0.5
+        },
+        {
+            "id": 50,
+            "x": 79.0,
+            "y": -0.5
+        },
+        {
+            "id": 51,
+            "x": 79.5,
+            "y": -0.5
+        },
+        {
+            "id": 52,
+            "x": 80.0,
+            "y": -0.5
+        },
+        {
+            "id": 53,
+            "x": 80.5,
+            "y": -0.5
+        },
+        {
+            "id": 54,
+            "x": 81.0,
+            "y": -0.5
+        },
+        {
+            "id": 55,
+            "x": 81.5,
+            "y": -0.5
+        },
+        {
+            "id": 56,
+            "x": 82.0,
+            "y": -0.5
+        },
+        {
+            "id": 57,
+            "x": 78.5,
+            "y": 0.0
+        },
+        {
+            "id": 58,
+            "x": 79.0,
+            "y": 0.0
+        },
+        {
+            "id": 59,
+            "x": 79.5,
+            "y": 0.0
+        },
+        {
+            "id": 60,
+            "x": 80.0,
+            "y": 0.0
+        },
+        {
+            "id": 61,
+            "x": 80.5,
+            "y": 0.0
+        },
+        {
+            "id": 62,
+            "x": 81.0,
+            "y": 0.0
+        },
+        {
+            "id": 63,
+            "x": 81.5,
+            "y": 0.0
+        },
+        {
+            "id": 64,
+            "x": 82.0,
+            "y": 0.0
+        },
+        {
+            "id": 65,
+            "x": 78.5,
+            "y": 0.5
+        },
+        {
+            "id": 66,
+            "x": 79.0,
+            "y": 0.5
+        },
+        {
+            "id": 67,
+            "x": 79.5,
+            "y": 0.5
+        },
+        {
+            "id": 68,
+            "x": 80.0,
+            "y": 0.5
+        },
+        {
+            "id": 69,
+            "x": 80.5,
+            "y": 0.5
+        },
+        {
+            "id": 70,
+            "x": 81.0,
+            "y": 0.5
+        },
+        {
+            "id": 71,
+            "x": 81.5,
+            "y": 0.5
+        },
+        {
+            "id": 72,
+            "x": 82.0,
+            "y": 0.5
+        },
+        {
+            "id": 73,
+            "x": 78.5,
+            "y": 1.0
+        },
+        {
+            "id": 74,
+            "x": 79.0,
+            "y": 1.0
+        },
+        {
+            "id": 75,
+            "x": 79.5,
+            "y": 1.0
+        },
+        {
+            "id": 76,
+            "x": 80.0,
+            "y": 1.0
+        },
+        {
+            "id": 77,
+            "x": 80.5,
+            "y": 1.0
+        },
+        {
+            "id": 78,
+            "x": 81.0,
+            "y": 1.0
+        },
+        {
+            "id": 79,
+            "x": 81.5,
+            "y": 1.0
+        },
+        {
+            "id": 80,
+            "x": 82.0,
+            "y": 1.0
+        },
+        {
+            "id": 81,
+            "x": 78.5,
+            "y": 1.5
+        },
+        {
+            "id": 82,
+            "x": 79.0,
+            "y": 1.5
+        },
+        {
+            "id": 83,
+            "x": 79.5,
+            "y": 1.5
+        },
+        {
+            "id": 84,
+            "x": 80.0,
+            "y": 1.5
+        },
+        {
+            "id": 85,
+            "x": 80.5,
+            "y": 1.5
+        },
+        {
+            "id": 86,
+            "x": 81.0,
+            "y": 1.5
+        },
+        {
+            "id": 87,
+            "x": 81.5,
+            "y": 1.5
+        },
+        {
+            "id": 88,
+            "x": 82.0,
+            "y": 1.5
+        },
+        {
+            "id": 89,
+            "x": 78.5,
+            "y": 2.0
+        },
+        {
+            "id": 90,
+            "x": 79.0,
+            "y": 2.0
+        },
+        {
+            "id": 91,
+            "x": 79.5,
+            "y": 2.0
+        },
+        {
+            "id": 92,
+            "x": 80.0,
+            "y": 2.0
+        },
+        {
+            "id": 93,
+            "x": 80.5,
+            "y": 2.0
+        },
+        {
+            "id": 94,
+            "x": 81.0,
+            "y": 2.0
+        },
+        {
+            "id": 95,
+            "x": 81.5,
+            "y": 2.0
+        },
+        {
+            "id": 96,
+            "x": 82.0,
+            "y": 2.0
+        },
+        {
+            "id": 97,
+            "x": 78.5,
+            "y": 2.5
+        },
+        {
+            "id": 98,
+            "x": 79.0,
+            "y": 2.5
+        },
+        {
+            "id": 99,
+            "x": 79.5,
+            "y": 2.5
+        },
+        {
+            "id": 100,
+            "x": 80.0,
+            "y": 2.5
+        },
+        {
+            "id": 101,
+            "x": 80.5,
+            "y": 2.5
+        },
+        {
+            "id": 102,
+            "x": 81.0,
+            "y": 2.5
+        },
+        {
+            "id": 103,
+            "x": 81.5,
+            "y": 2.5
+        },
+        {
+            "id": 104,
+            "x": 82.0,
+            "y": 2.5
+        },
+        {
+            "id": 105,
+            "x": 78.5,
+            "y": 3.0
+        },
+        {
+            "id": 106,
+            "x": 79.0,
+            "y": 3.0
+        },
+        {
+            "id": 107,
+            "x": 79.5,
+            "y": 3.0
+        },
+        {
+            "id": 108,
+            "x": 80.0,
+            "y": 3.0
+        },
+        {
+            "id": 109,
+            "x": 80.5,
+            "y": 3.0
+        },
+        {
+            "id": 110,
+            "x": 81.0,
+            "y": 3.0
+        },
+        {
+            "id": 111,
+            "x": 81.5,
+            "y": 3.0
+        },
+        {
+            "id": 112,
+            "x": 82.0,
+            "y": 3.0
+        },
+        {
+            "id": 113,
+            "x": 78.5,
+            "y": 3.5
+        },
+        {
+            "id": 114,
+            "x": 79.0,
+            "y": 3.5
+        },
+        {
+            "id": 115,
+            "x": 79.5,
+            "y": 3.5
+        },
+        {
+            "id": 116,
+            "x": 80.0,
+            "y": 3.5
+        },
+        {
+            "id": 117,
+            "x": 80.5,
+            "y": 3.5
+        },
+        {
+            "id": 118,
+            "x": 81.0,
+            "y": 3.5
+        },
+        {
+            "id": 119,
+            "x": 81.5,
+            "y": 3.5
+        },
+        {
+            "id": 120,
+            "x": 82.0,
+            "y": 3.5
+        },
+        {
+            "id": 121,
+            "x": 78.5,
+            "y": 4.0
+        },
+        {
+            "id": 122,
+            "x": 79.0,
+            "y": 4.0
+        },
+        {
+            "id": 123,
+            "x": 79.5,
+            "y": 4.0
+        },
+        {
+            "id": 124,
+            "x": 80.0,
+            "y": 4.0
+        },
+        {
+            "id": 125,
+            "x": 80.5,
+            "y": 4.0
+        },
+        {
+            "id": 126,
+            "x": 81.0,
+            "y": 4.0
+        },
+        {
+            "id": 127,
+            "x": 81.5,
+            "y": 4.0
+        },
+        {
+            "id": 128,
+            "x": 82.0,
+            "y": 4.0
+        }
+    ]
+}
