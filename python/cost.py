@@ -167,22 +167,23 @@ def curtailing_given_failed_sub(instance, solution, power, fail_id):
     turbines = solution[TURBINES]
     # Cable linking this substation to another one, might be None
     cable = solution[SUBSTATION_SUBSTATION_CABLES].get(fail_id, None)
+    nb_turbines = len([1 for tu in turbines.values() if tu[SUBSTATION_ID] == fail_id])
+    # The power received by the failed substation
+    power_received = nb_turbines * power
     # Power sent
     power_sent = 0
     if cable != None:
-        nb_turbines = len(
-            [1 for tu in turbines.values() if tu[SUBSTATION_ID] == fail_id]
-        )
         cable_capa = instance[SUB_SUB_CABLE_TYPES][cable[CABLE_TYPE_SUBSUB]][RATING]
-        power_sent = min(power * nb_turbines, cable_capa)
+        power_sent = min(power_received, cable_capa)
     # First add the cost of the curtailing of the failed substation
     cost += curtailing_failed_substation(instance, fail_id, turbines, power, cable)
+    print(f"substation {fail_id} has curtailing {cost}")
     # Then iterate through the rest of the substations
     for id, sub in substations.items():
         # We already took this cost into account
         if id == fail_id:
             continue
-        # If this substation is receiving from the failed one, compute the power received
+        # If this substation is receiving from the failed one, use the power sent to it.
         elif not (cable == None) and id == cable[OTHER_SUB_ID]:
             cost += curtailing_non_failed_substation(
                 instance, id, sub, turbines, power, power_sent
@@ -249,6 +250,7 @@ def operational_cost(instance, solution):
             fail_curt = curtailing_given_failed_sub(
                 instance, solution, scenario_power, id
             )
+            print(f"For substation {id}, the curtailing under failure is {fail_curt}")
             scenario_cost += failure_probas[id] * cost_of_curtailing(
                 instance, fail_curt
             )

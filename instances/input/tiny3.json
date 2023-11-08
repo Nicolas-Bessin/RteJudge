@@ -16,7 +16,7 @@
             "fixed_cost": 2000,
             "id": 1,
             "probability_of_failure": 0,
-            "rating": 100,
+            "rating": 1000,
             "variable_cost": 20
         }
     ],
@@ -42,28 +42,23 @@
     ],
     "substation_types": [
         {
-            "cost": 100000,
+            "cost": 0,
             "id": 1,
             "probability_of_failure": 1,
-            "rating": 100
+            "rating": 1000
         },
         {
             "cost": 0,
             "id": 2,
-            "probability_of_failure": 0,
-            "rating": 100
+            "probability_of_failure": 1,
+            "rating": 1000
         }
     ],
     "wind_scenarios": [
         {
             "id": 1,
-            "power_generation": 100,
+            "power_generation": 200,
             "probability": 1
-        },
-        {
-            "id": 2,
-            "power_generation": 150,
-            "probability": 0
         }
     ],
     "wind_turbines": [
