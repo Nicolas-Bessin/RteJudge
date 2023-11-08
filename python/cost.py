@@ -232,9 +232,13 @@ def operational_cost(instance, solution):
     substations = solution[SUBSTATIONS]
     for id, sub in substations.items():
         failure_probas[id] = prob_failure(instance, sub)
-    no_fail_proba = 1 - sum(failure_probas.values())
+    no_fail_proba = max(0, 1 - sum(failure_probas.values()))
     if not (0 <= no_fail_proba <= 1):
-        raise InstanceError(["The probability of a non-failure should be in [0,1]"])
+        raise InstanceError(
+            [
+                f"The probability of a non-failure should be in [0,1], but it is {no_fail_proba}"
+            ]
+        )
     # We then enumerate through the scenarios
     scenarios = instance[WIND_SCENARIOS]
     for scenario in scenarios.values():
