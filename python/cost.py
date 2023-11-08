@@ -4,7 +4,7 @@ from errors import InstanceError
 
 
 def dist(a, b):
-    return sqrt((a[0] - b[0]**2 + (a[1] - b[1])**2))
+    return sqrt((a[0] - b[0])**2 + (a[1] - b[1])**2)
 
 
 def cost(instance, solution):
